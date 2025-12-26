@@ -1,16 +1,14 @@
 {
   "version": 2,
-  "name": "my-tempmail-api",
+  "name": "Tobi-tempmail-api",
   "public": true,
-  "functions": {
-    "api/index.js": {
-      "maxDuration": 10
-    }
-  },
   "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/api/index.js"
     }
-  ]
+  ],
+  "env": {
+    "HOSTED_BY": "Paras chourasiya"
+  }
 }
