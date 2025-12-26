@@ -2,7 +2,7 @@ const axios = require('axios');
 
 module.exports = async (req, res) => {
   // 🔥 यहाँ अपना नाम लिखें
-  const YOUR_NAME = "Paras Chourasiya / tg - @Aotpy"; // अपना नाम डालें
+  const YOUR_NAME = "Paras Chourasiya / @Aotpy"; // अपना नाम यहाँ डालें
   
   // CORS enable
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -14,37 +14,34 @@ module.exports = async (req, res) => {
       'https://socialdown.itz-ashlynn.workers.dev/tempmail?action=list',
       {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (Vercel-TempMail-Proxy/1.0)'
+          'User-Agent': 'Mozilla/5.0'
         }
       }
     );
     
     const originalData = response.data;
     
-    // आपका कस्टम रिस्पॉन्स
+    // पूरा नया रिस्पॉन्स - सोर्स API की कोई जानकारी नहीं
     const yourResult = {
-      status: "SUCCESS",
-      message: `🚀 TempMail API Hosted by ${YOUR_NAME}`,
-      developer: YOUR_NAME,
+      status: "ACTIVE",
+      message: `✅ TempMail API Successfully Running`,
+      hosted_by: YOUR_NAME,
+      hosted_on: "Vercel",
       timestamp: new Date().toISOString(),
-      server: "Vercel",
       
-      // मुख्य डेटा
-      available_domains: originalData.domains,
+      // केवल जरूरी डेटा
+      domains: originalData.domains,
       total_domains: originalData.domains.length,
-      api_provider: originalData.creator,
-      last_updated: originalData.timestamp,
       
       // एक्स्ट्रा फीचर्स
-      generate_random_email: `${generateRandomString()}@${originalData.domains[0]}`,
-      generate_username_email: `user${Math.floor(Math.random() * 1000)}@${originalData.domains[0]}`,
-      source_api: "https://socialdown.itz-ashlynn.workers.dev",
+      generated_email: `${generateRandomString()}@${originalData.domains[0]}`,
+      quick_email: `user${Math.floor(Math.random() * 9999)}@${originalData.domains[0]}`,
       
-      // उपयोग के निर्देश
-      usage: {
-        method: "GET",
-        endpoint: "/",
-        example: "https://your-project.vercel.app/"
+      // मार्गदर्शन
+      instructions: {
+        method: "GET /",
+        use_email: "Use above email for temporary signups",
+        note: "Email expires after some time"
       }
     };
     
@@ -53,20 +50,20 @@ module.exports = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: "ERROR",
-      developer: YOUR_NAME,
-      error: error.message,
-      note: "API might be down",
-      timestamp: new Date().toISOString()
+      hosted_by: YOUR_NAME,
+      error: "Service temporarily unavailable",
+      timestamp: new Date().toISOString(),
+      support: "Check back in few minutes"
     });
   }
 };
 
-// Helper functions
+// Helper function for random string
 function generateRandomString() {
-  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  const chars = 'abcdefghijklmnopqrstuvwxyz123456789';
   let result = '';
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 10; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return result;
-      }
+}
