@@ -1,0 +1,18 @@
+{
+  "name": "my-tempmail-api",
+  "version": "1.0.0",
+  "description": "TempMail API hosted by YOUR_NAME on Vercel",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=14.x"
+  },
+  "author": "Paras chourasiya / tg - @Aotpy",
+  "license": "MIT",
+  "keywords": ["tempmail", "api", "vercel", "proxy"]
+}
