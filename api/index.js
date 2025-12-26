@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
       status: "ERROR",
       developer: YOUR_NAME,
       error: error.message,
-      note: "Source API might be down",
+      note: "API might be down",
       timestamp: new Date().toISOString()
     });
   }
